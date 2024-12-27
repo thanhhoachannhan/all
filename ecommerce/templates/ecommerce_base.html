@@ -1,0 +1,7 @@
+<script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+
+<a hx-get="{% url 'ecommerce:product_list' %}" hx-target="#main" hx-push-url="true"> product_list </a>
+<a hx-get="{% url 'ecommerce:order_list' %}" hx-target="#main" hx-push-url="true"> order_list </a>
+<a hx-get="{% url 'ecommerce:notification_list' %}" hx-target="#main" hx-push-url="true"> notification_list </a>
+
+<div id="main" hx-history-elt> {% block content %} {% endblock content %} </div>

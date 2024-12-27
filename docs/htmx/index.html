@@ -1,0 +1,6 @@
+<script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+
+<a hx-get="{% url 'home' %}" hx-target="#main" hx-push-url="true"> Home </a>
+<a hx-get="{% url 'about' %}" hx-target="#main" hx-push-url="true"> About </a>
+
+<div id="main" hx-history-elt> {% block content %} {% endblock content %} </div>

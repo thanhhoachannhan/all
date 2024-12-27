@@ -1,0 +1,14 @@
+{% extends "customer/base.html" %}
+
+
+{% block site %} == Customer | Order | List == {% endblock site %}
+
+
+{% block content %}
+
+{% for order in orders %}
+    <a href="{% url 'ecommerce:customer_order_detail' order.id %}">{{ order }}</a>
+    <br>
+{% endfor %}
+
+{% endblock content %}

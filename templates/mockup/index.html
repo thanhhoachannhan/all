@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    * {box-sizing: border-box;}
+    :root{ --border: 1px solid black; }
+    body { background-color: #1f1f1f; }
+
+    .hzn {  flex-direction: row; }
+    .hzn > *:not(:last-child) { border-right: none; }
+    .vtc {  flex-direction: column; }
+    .vtc > *:not(:last-child) { border-bottom: none; }
+    .center { align-items: center; }
+    /* .dynamic { flex-grow: 1; } */
+    .fixed { flex-grow: 0; }
+    
+    .nowrap {
+      flex-wrap: nowrap;
+      width: 0;
+      overflow-x: auto;
+    }
+    .nowrap::-webkit-scrollbar { width: 0; height: 0; }
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      /* justify-content: center; */
+
+      border: var(--border);
+      
+      min-width: 5px; min-height: 5px;
+      padding: 10px;
+    }
+    div > * { flex-grow: 1;}
+
+    .item {
+      margin: 10px;
+      min-width: 100px;
+      height: 100px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="vtc">
+    <div class="hzn">
+      <div class="fixed"> <div>x</div> </div>
+      <div>
+        <div class="hzn">
+          <div>x</div>
+          <div class="fixed">x</div>
+        </div>
+      </div>
+      <div class="fixed">
+        <div class="hzn">
+          <div class="fixed">x</div>
+          <div class="fixed">x</div>
+          <div class="fixed">x</div>
+          <div class="fixed">x</div>
+        </div>
+      </div>
+    </div>
+    <div class="vtc">
+      <div class="vtc">
+        <div class="hzn">
+          <div class="fixed">x</div>
+          <div>x</div>
+          <div class="fixed">x</div>
+          <div class="fixed">x</div>
+        </div>
+        <div>
+          <div class="nowrap">
+            <div class="fixed item">1</div>
+            <div class="fixed item">2</div>
+            <div class="fixed item">3</div>
+            <div class="fixed item">4</div>
+            <div class="fixed item">5</div>
+            <div class="fixed item">6</div>
+            <div class="fixed item">7</div>
+          </div>
+        </div>
+      </div>
+      <div class="vtc">
+        <div class="hzn">
+          <div class="fixed">x</div>
+          <div>x</div>
+          <div class="fixed">x</div>
+          <div class="fixed">x</div>
+        </div>
+        <div class="vtc">
+          <div>
+            <div class="fixed item">1</div>
+            <div class="fixed item">2</div>
+            <div class="fixed item">3</div>
+            <div class="fixed item">4</div>
+            <div class="fixed item">5</div>
+            <div class="fixed item">6</div>
+            <div class="fixed item">7</div>
+          </div>
+          <div class="hzn">
+            <div>prev</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>...</div>
+            <div>next</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div> <div>x</div> </div>
+  </div>
+
+
+</body>
+
+</html>
+
+

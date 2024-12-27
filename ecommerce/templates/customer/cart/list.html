@@ -1,0 +1,19 @@
+{% extends "customer/base.html" %}
+
+
+{% block site %} == Customer | Cart | List == {% endblock site %}
+
+
+{% block content %}
+
+{% for cart in carts %}
+    == {{ cart }}
+    <br>
+    {% for cart_item in cart.cartitem_set.all %}
+        = <a href="{% url 'ecommerce:customer_product_detail' cart_item.product.id %}">{{ cart_item }}</a>
+        <br>
+    {% endfor %}
+    <br>
+{% endfor %}
+
+{% endblock content %}

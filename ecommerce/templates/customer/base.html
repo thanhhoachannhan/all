@@ -1,0 +1,20 @@
+== Menu ==
+<br>
+{% if not request.user.is_authenticated %}
+<a href="">login</a>
+{% else %}
+<a href="">logout</a>
+{% endif %}
+<br>
+<a href="{% url 'ecommerce:customer_cart_list' %}">customer_cart_list</a> |
+<br>
+<a href="{% url 'ecommerce:customer_product_list' %}">customer_product_list</a> |
+<a href="{% url 'ecommerce:customer_order_list' %}">customer_order_list</a> |
+
+<hr><br>
+
+{% block site %}{% endblock site %}
+
+<hr><br>
+
+{% block content %}{% endblock content %}
