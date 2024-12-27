@@ -4,6 +4,6 @@ __pycache__/
 emails/
 uploads
 
-.env
+# .env
 log.log
 db.sqlite3
