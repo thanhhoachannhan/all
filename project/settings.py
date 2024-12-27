@@ -17,7 +17,7 @@ ROOT_URLCONF = 'project.urls'
 WSGI_APPLICATION = 'project.wsgi.application'
 """ APPS """
 AUTH_APP = 'authentication'
-APPS = [AUTH_APP, 'core', 'ts', 'ecommerce']
+APPS = [AUTH_APP, 'core', 'ts', 'ecommerce', 'marketplace']
 DJANGO_APPS = [f"django.contrib.{app}" for app in ['admin','auth','contenttypes','sessions','messages','staticfiles']]
 THIRTY_APPS = ['rest_framework', 'rest_framework_simplejwt.token_blacklist', 'django_htmx']
 INSTALLED_APPS = DJANGO_APPS + THIRTY_APPS + [app for app in APPS if os.path.exists(BASE_DIR / app)]
@@ -95,6 +95,7 @@ USER_TYPE_CHOICES = (
     ('global', 'Global User'),
     ('ecommerce', 'Ecommerce App User'),
     ('test', 'Test App User'),
+    ('marketplace', 'Marketplace App User'),
 ) # su dung cho truong hop nhieu loai user 
 """ RestAPI """
 APPEND_SLASH = False
