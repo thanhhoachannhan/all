@@ -27,7 +27,7 @@ class Login(View):
                 return redirect(next_url)
         else:
             print('form is not valid')
-            print(form.error_messages)
+            print(form.errors)
         return redirect(reverse('authentication:login'))
 
 class Logout(LoginRequiredMixin, View):

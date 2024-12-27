@@ -23,7 +23,7 @@ THIRTY_APPS = ['rest_framework', 'rest_framework_simplejwt.token_blacklist', 'dj
 INSTALLED_APPS = DJANGO_APPS + THIRTY_APPS + [app for app in APPS if os.path.exists(BASE_DIR / app)]
 if os.path.exists(BASE_DIR / AUTH_APP) and AUTH_APP in APPS:
     AUTH_USER_MODEL = f'{AUTH_APP}.User'
-    AUTHENTICATION_BACKENDS = ['authentication.backends.AuthenticationBackend']
+    AUTHENTICATION_BACKENDS = ['authentication.backends.AuthenticationBackend'] # Process: Inactive Errors messagse when login
 """ Media """
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
@@ -84,7 +84,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware', # for django htmx
-    'authentication.middleware.BlockLocalUserMiddleware',
+    'authentication.middleware.BlockLocalUserMiddleware', # Fix: Cannot query "None(User)": Must be "Group" instance.
 ]
 """ Redirect """
 LOGIN_URL = '/authentication/login/'
