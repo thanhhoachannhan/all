@@ -8,6 +8,4 @@ uploads
 log.log
 db.sqlite3
 
-static/admin
-static/rest_framework
-django-htmx.js
+static/
