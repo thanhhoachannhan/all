@@ -198,10 +198,14 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Địa chỉ của Redis broke
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Địa chỉ của Redis backend
 CELERY_TIMEZONE = 'UTC'
 
+from celery.schedules import crontab
+from datetime import timedelta
 CELERY_BEAT_SCHEDULE = {
     'print-hello-world': {
         'task': 'project.celery.task_one',
-        'schedule': 5,  # Lặp lại mỗi 5 giây
+        # 'schedule': 5,  # Lặp lại mỗi 5 giây
+        # 'schedule': crontab(day_of_month=1, hour=0, minute=0),  # Chạy vào lúc 00:00 ngày 1 mỗi tháng
+        'schedule': timedelta(seconds=5),  # Chạy mỗi 10 giây
     },
 }
 """ EOF """

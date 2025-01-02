@@ -17,6 +17,5 @@ def debug_task(self):
 
 @shared_task
 def task_one():
-    time.sleep(10)
     print('Hello World')
     return 'Hello World'

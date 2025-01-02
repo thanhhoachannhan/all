@@ -89,6 +89,12 @@ up:
 clean:
 	pyclean .
 
+run_worker:
+	celery -A project.celery worker --loglevel=info
+
+run_beat:
+	celery -A project.celery beat --loglevel=info
+
 # https://stackoverflow.com/questions/45744992/celery-raises-valueerror-not-enough-values-to-unpack
 # run_worker:
 #     pip install gevent
