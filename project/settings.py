@@ -11,7 +11,7 @@ load_dotenv()
 
 """ Base settings """
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = os.getenv("DEBUG") == "True"
+DEBUG = os.getenv("DEBUG") == "True" or True
 SECRET_KEY = 'DJANGO'
 ALLOWED_HOSTS=['*']
 ROOT_URLCONF = 'project.urls'
@@ -20,14 +20,29 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #-------------------------------------------------
 # APPS
 #-------------------------------------------------
-AUTH_APP = 'authentication'
-APPS = [AUTH_APP, 'core', 'ts', 'ecommerce', 'marketplace']
-DJANGO_APPS = [f"django.contrib.{app}" for app in ['admin','auth','contenttypes','sessions','messages','staticfiles']]
-THIRTY_APPS = ['rest_framework', 'rest_framework_simplejwt.token_blacklist', 'django_htmx']
-INSTALLED_APPS = DJANGO_APPS + THIRTY_APPS + [app for app in APPS if os.path.exists(BASE_DIR / app)]
-if os.path.exists(BASE_DIR / AUTH_APP) and AUTH_APP in APPS:
-    AUTH_USER_MODEL = f'{AUTH_APP}.User'
-    AUTHENTICATION_BACKENDS = ['authentication.backends.AuthenticationBackend'] # Process: Inactive Errors messagse when login
+APPS = [
+    'authentication', 'core', 'ts',
+    'ecommerce', 'marketplace'
+]
+DJANGO_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+THIRTY_APPS = [
+    'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+    'django_htmx'
+]
+INSTALLED_APPS = DJANGO_APPS + THIRTY_APPS + [app for app in APPS]
+
+AUTH_USER_MODEL = 'authentication.User'
+
+# Process: Inactive Errors messagse when login
+AUTHENTICATION_BACKENDS = ['authentication.backends.AuthenticationBackend']
 
 #-------------------------------------------------
 # Media
@@ -60,7 +75,9 @@ TEMPLATES = [{
 DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': BASE_DIR / 'db.sqlite3'}}
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-""" Timezone """
+#-------------------------------------------------
+# Timezone
+#-------------------------------------------------
 USE_TZ = True
 USE_L10N = True
 TIME_ZONE = 'UTC'
@@ -119,7 +136,10 @@ USER_TYPE_CHOICES = (
     ('test', 'Test App User'),
     ('marketplace', 'Marketplace App User'),
 ) # su dung cho truong hop nhieu loai user 
-""" RestAPI """
+
+#-------------------------------------------------
+# Rest Framework
+#-------------------------------------------------
 APPEND_SLASH = False
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

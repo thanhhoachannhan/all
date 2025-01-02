@@ -1,7 +1,6 @@
 __pycache__/
 .conda/
 .vscode/
-uploads
 
 # .env
 log.log
@@ -9,3 +8,6 @@ db.sqlite3
 
 emails/
 static/
+uploads/
+
+migrations/
