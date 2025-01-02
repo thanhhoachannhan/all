@@ -10,7 +10,7 @@ from authentication.forms import LoginForm
 class Login(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect(reverse('core:index'))
+            return redirect(reverse('index'))
         return render(request, 'login.html', {
             'form': LoginForm()
         })
@@ -23,7 +23,7 @@ class Login(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                next_url = request.GET.get('next', 'core:index')
+                next_url = request.GET.get('next', 'index')
                 return redirect(next_url)
         else:
             print('form is not valid')

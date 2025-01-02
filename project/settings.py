@@ -21,7 +21,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # APPS
 #-------------------------------------------------
 APPS = [
-    'authentication', 'core', 'ts',
+    'authentication', 'ts',
     'ecommerce', 'marketplace'
 ]
 DJANGO_APPS = [
