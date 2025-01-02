@@ -112,14 +112,21 @@ if not os.path.exists(EMAIL_FILE_PATH): os.mkdir(EMAIL_FOLDER_NAME)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    # Multiple languages
     'django.middleware.locale.LocaleMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_htmx.middleware.HtmxMiddleware', # for django htmx
-    'authentication.middleware.BlockLocalUserMiddleware', # Fix: Cannot query "None(User)": Must be "Group" instance.
+
+    # for django htmx
+    'django_htmx.middleware.HtmxMiddleware',
+
+    # Fix: Cannot query "None(User)": Must be "Group" instance.
+    'authentication.middleware.BlockLocalUserMiddleware',
 ]
 
 """ Redirect """
