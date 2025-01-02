@@ -1,10 +1,11 @@
-""" Settings """
+
 import os
 from pathlib import Path
 from datetime import timedelta
 
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
+
 
 load_dotenv()
 
