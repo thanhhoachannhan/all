@@ -101,14 +101,10 @@ for lang in LANGUAGES:
 #-------------------------------------------------
 # Email
 #-------------------------------------------------
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FOLDER_NAME = 'emails'
 EMAIL_FILE_PATH = BASE_DIR / EMAIL_FOLDER_NAME
 if not os.path.exists(EMAIL_FILE_PATH): os.mkdir(EMAIL_FOLDER_NAME)
-if not os.path.exists(EMAIL_FILE_PATH/'.gitkeep'):
-    f = open(EMAIL_FILE_PATH/'.gitkeep', 'w')
-    f.close()
 
 #-------------------------------------------------
 # Middleware
