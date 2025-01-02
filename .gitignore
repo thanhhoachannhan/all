@@ -1,11 +1,11 @@
 __pycache__/
 .conda/
 .vscode/
-emails/
 uploads
 
 # .env
 log.log
 db.sqlite3
 
+emails/
 static/
