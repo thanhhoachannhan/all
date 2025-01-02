@@ -11,7 +11,7 @@ load_dotenv()
 """ Base settings """
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.getenv("DEBUG") == "True"
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = 'DJANGO'
 ALLOWED_HOSTS=['*']
 ROOT_URLCONF = 'project.urls'
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -90,7 +90,6 @@ MIDDLEWARE = [
 LOGIN_URL = '/authentication/login/'
 """ Extra """
 PASSWORD_RESET_TIMEOUT = 60 # thoi gian hen han cua token tao ra tu default_token_generator
-REDIS_SETTINGS = os.getenv("REDIS_SETTINGS") == "True" # Cấu hình bật tắt redis
 USER_TYPE_CHOICES = (
     ('global', 'Global User'),
     ('ecommerce', 'Ecommerce App User'),
