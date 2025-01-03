@@ -143,25 +143,9 @@ class VendorProductDetailView(SellerRequiredMixin, View):
 
 
 
-#### Version function base view
-def seller_required(view_func):
-    @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect(reverse('authentication:login'))
+from .permissions import ecommerce_seller_required
 
-        if not hasattr(request.user, 'ecommerceuser'):
-            return redirect(reverse('403'))
-
-        user = request.user.ecommerceuser
-        if not user.is_authenticated or not hasattr(user, 'is_seller') or not user.is_seller:
-            return redirect(reverse('403'))
-
-        return view_func(request, *args, **kwargs)
-
-    return _wrapped_view
-
-@seller_required
+@ecommerce_seller_required
 @require_http_methods(["GET"])
 def customer_product_list(request):
     return render(request, 'customer/product/list.html', {

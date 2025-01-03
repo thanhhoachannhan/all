@@ -10,6 +10,8 @@ from ecommerce.views import (
     CustomerProductListView, CustomerProductDetailView,
     CustomerOrderListView, CustomerOrderDetailView,
     CustomerCartListView,
+
+    customer_product_list,
 )
 
 app_name = 'ecommerce'
@@ -24,7 +26,7 @@ urlpatterns = [
     path('customer/', include([
         path('', index),
         path('product/', include([
-            path('', CustomerProductListView.as_view(), name='customer_product_list'),
+            path('', customer_product_list, name='customer_product_list'),
             path('detail/<int:product_id>/', CustomerProductDetailView.as_view(), name='customer_product_detail'),
             path('category/<str:category_slug>/', index),
         ])),
