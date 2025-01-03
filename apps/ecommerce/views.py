@@ -19,11 +19,11 @@ class SuperuserRequiredMixin:
             return redirect(reverse('authentication:login'))
 
         if not hasattr(request.user, 'ecommerceuser'):
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
 
         user = request.user.ecommerceuser
         if not user.is_authenticated or not hasattr(user, 'is_superuser') or not user.is_superuser:
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
         return super().dispatch(request, *args, **kwargs)
 
 class SellerRequiredMixin:
@@ -32,11 +32,11 @@ class SellerRequiredMixin:
             return redirect(reverse('authentication:login'))
 
         if not hasattr(request.user, 'ecommerceuser'):
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
 
         user = request.user.ecommerceuser
         if not user.is_authenticated or not hasattr(user, 'is_seller') or not user.is_seller:
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
         return super().dispatch(request, *args, **kwargs)
 
 class BuyerRequiredMixin():
@@ -45,11 +45,11 @@ class BuyerRequiredMixin():
             return redirect(reverse('authentication:login'))
 
         if not hasattr(request.user, 'ecommerceuser'):
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
 
         user = request.user.ecommerceuser
         if not user.is_authenticated or not hasattr(user, 'is_buyer') or not user.is_buyer:
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
         
         order_id = kwargs.get('order_id')
         if kwargs.get('order_id'):
@@ -151,11 +151,11 @@ def seller_required(view_func):
             return redirect(reverse('authentication:login'))
 
         if not hasattr(request.user, 'ecommerceuser'):
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
 
         user = request.user.ecommerceuser
         if not user.is_authenticated or not hasattr(user, 'is_seller') or not user.is_seller:
-            return redirect(reverse('ecommerce:403'))
+            return redirect(reverse('403'))
 
         return view_func(request, *args, **kwargs)
 

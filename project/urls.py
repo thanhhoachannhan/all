@@ -7,12 +7,14 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = [
-    path('', lambda request: HttpResponse('core'), name='index'),
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('api/', include('api')),
 ]
 urlpatterns += i18n_patterns(
+    path('', lambda request: HttpResponse('core'), name='index'),
+    path('403', lambda request: HttpResponse('403'), name='403'),
+
     *[path(f'{app}/', include(f'{app}.urls')) for app in settings.APPS],
     prefix_default_language = False
 )
