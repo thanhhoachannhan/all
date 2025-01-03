@@ -1,5 +1,5 @@
 
-import os
+import os, sys
 from pathlib import Path
 from datetime import timedelta
 
@@ -18,6 +18,7 @@ SECRET_KEY = 'DJANGO'
 ALLOWED_HOSTS=['*']
 ROOT_URLCONF = 'project.urls'
 WSGI_APPLICATION = 'project.wsgi.application'
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 #-------------------------------------------------
 # APPS
