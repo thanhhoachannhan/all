@@ -6,6 +6,8 @@ from datetime import timedelta
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
 
+from celery.schedules import crontab
+
 
 load_dotenv()
 
@@ -72,8 +74,9 @@ TEMPLATES = [{
 #-------------------------------------------------
 # Databases
 #-------------------------------------------------
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': BASE_DIR / 'db.sqlite3'}}
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DATABASES = {
+    'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'db.sqlite3'}
+}
 
 #-------------------------------------------------
 # Timezone
@@ -95,8 +98,10 @@ LANGUAGES = (
 )
 if not os.path.exists(BASE_DIR / 'locale'): os.mkdir('locale')
 for lang in LANGUAGES:
-    if not os.path.exists(BASE_DIR / 'locale' / lang[0]): os.mkdir(BASE_DIR / 'locale' / lang[0])
-    if not os.path.exists(BASE_DIR / 'locale' / lang[0] / 'LC_MESSAGES'): os.mkdir(BASE_DIR / 'locale' / lang[0] / 'LC_MESSAGES')
+    if not os.path.exists(BASE_DIR / 'locale' / lang[0]):
+        os.mkdir(BASE_DIR / 'locale' / lang[0])
+    if not os.path.exists(BASE_DIR / 'locale' / lang[0] / 'LC_MESSAGES'):
+        os.mkdir(BASE_DIR / 'locale' / lang[0] / 'LC_MESSAGES')
 
 #-------------------------------------------------
 # Email
@@ -131,14 +136,18 @@ MIDDLEWARE = [
 
 """ Redirect """
 LOGIN_URL = '/authentication/login/'
+
 """ Extra """
-PASSWORD_RESET_TIMEOUT = 60 # thoi gian hen han cua token tao ra tu default_token_generator
+# thoi gian hen han cua token tao ra tu default_token_generator
+PASSWORD_RESET_TIMEOUT = 60
+
+# su dung cho truong hop nhieu loai user 
 USER_TYPE_CHOICES = (
     ('global', 'Global User'),
     ('ecommerce', 'Ecommerce App User'),
     ('test', 'Test App User'),
     ('marketplace', 'Marketplace App User'),
-) # su dung cho truong hop nhieu loai user 
+)
 
 #-------------------------------------------------
 # Rest Framework
@@ -165,7 +174,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     "formatters": {
         "verbose": {
-            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "format": "{levelname} {asctime} {module} {message}",
             "style": "{",
         },
         "simple": {
@@ -193,19 +202,29 @@ LOGGING = {
     },
 }
 
-""" Celery """
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Địa chỉ của Redis broker
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Địa chỉ của Redis backend
+#-------------------------------------------------
+# Celery
+#-------------------------------------------------
+# Địa chỉ của Redis broker
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+# Địa chỉ của Redis backend
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
 CELERY_TIMEZONE = 'UTC'
 
-from celery.schedules import crontab
-from datetime import timedelta
 CELERY_BEAT_SCHEDULE = {
     'print-hello-world': {
         'task': 'project.celery.task_one',
         # 'schedule': 5,  # Lặp lại mỗi 5 giây
-        # 'schedule': crontab(day_of_month=1, hour=0, minute=0),  # Chạy vào lúc 00:00 ngày 1 mỗi tháng
+
+        # Chạy vào lúc 00:00 ngày 1 mỗi tháng
+        # 'schedule': crontab(day_of_month=1, hour=0, minute=0),
+
         'schedule': timedelta(seconds=5),  # Chạy mỗi 10 giây
     },
 }
-""" EOF """
+
+#-------------------------------------------------
+# END
+#-------------------------------------------------
