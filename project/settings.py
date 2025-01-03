@@ -41,10 +41,26 @@ THIRTY_APPS = [
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRTY_APPS + [app for app in APPS]
 
+#-------------------------------------------------
+# Authentication Settings
+#-------------------------------------------------
 AUTH_USER_MODEL = 'authentication.User'
 
 # Process: Inactive Errors messagse when login
 AUTHENTICATION_BACKENDS = ['authentication.backends.AuthenticationBackend']
+
+# thoi gian hen han cua token tao ra tu default_token_generator
+PASSWORD_RESET_TIMEOUT = 60
+
+LOGIN_URL = '/authentication/login/'
+
+# su dung cho truong hop nhieu loai user 
+USER_TYPE_CHOICES = (
+    ('global', 'Global User'),
+    ('ecommerce', 'Ecommerce App User'),
+    ('test', 'Test App User'),
+    ('marketplace', 'Marketplace App User'),
+)
 
 #-------------------------------------------------
 # Media
@@ -134,25 +150,9 @@ MIDDLEWARE = [
     'authentication.middleware.BlockLocalUserMiddleware',
 ]
 
-""" Redirect """
-LOGIN_URL = '/authentication/login/'
-
-""" Extra """
-# thoi gian hen han cua token tao ra tu default_token_generator
-PASSWORD_RESET_TIMEOUT = 60
-
-# su dung cho truong hop nhieu loai user 
-USER_TYPE_CHOICES = (
-    ('global', 'Global User'),
-    ('ecommerce', 'Ecommerce App User'),
-    ('test', 'Test App User'),
-    ('marketplace', 'Marketplace App User'),
-)
-
 #-------------------------------------------------
 # Rest Framework
 #-------------------------------------------------
-APPEND_SLASH = False
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
