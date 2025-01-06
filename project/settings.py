@@ -25,7 +25,8 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 #-------------------------------------------------
 APPS = [
     'authentication', 'ts',
-    'ecommerce', 'marketplace'
+    'ecommerce',
+    'marketplace',
 ]
 DJANGO_APPS = [
     'django.contrib.admin',

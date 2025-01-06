@@ -29,7 +29,7 @@ class UserGroup(models.Model):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_('username'), max_length=101, unique=True, validators=[UnicodeUsernameValidator()])
     fullname = models.CharField(_('fullname'), max_length=100, blank=True, null=True)
-    email = models.EmailField(_('email'))
+    email = models.EmailField(_('email'), blank=True, null=True)
     avatar = models.ImageField(_('avatar'), upload_to='avatar', blank=True, null=True)
     address = models.TextField(_('address'), blank=True, null=True)
     is_staff = models.BooleanField(_('is_staff'), default=False)

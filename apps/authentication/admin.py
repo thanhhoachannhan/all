@@ -4,6 +4,7 @@ from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 
 from authentication.models import User, UserGroup
+from marketplace.models import MarketplaceUser
 
 
 @admin.register(User)
@@ -23,6 +24,16 @@ class UserAdmin(UserAdmin):
 
     class Meta:
         ordering = ('date_joined')
+
+    def save_model(self, request, obj, form, change):
+        if change and obj.user_type == 'marketplace' and not hasattr(obj, 'marketplaceuser'):
+            MarketplaceUser.objects.create(
+                user_ptr=obj,
+                is_buyer=True,
+                is_seller=False
+            )
+        else:
+            super().save_model(request, obj, form, change)
 
 
 admin.site.unregister(Group)
