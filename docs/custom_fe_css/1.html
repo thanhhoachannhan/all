@@ -1,0 +1,85 @@
+<style>
+  * {box-sizing: border-box;}
+  :root{ --border: 1px solid black; }
+  body { background-color: #1f1f1f; }
+
+  .hzn {  flex-direction: row; }
+  .hzn > *:not(:last-child) { border-right: none; }
+  .vtc {  flex-direction: column; }
+  .vtc > *:not(:last-child) { border-bottom: none; }
+  .center { align-items: center; }
+  .fixed { flex-grow: 0; min-width: 150px;}
+  /* .dynamic { flex-grow: 1; } */
+  
+  .nowrap {
+    flex-wrap: nowrap;
+    width: 0;
+    overflow-x: auto;
+  }
+  .nowrap::-webkit-scrollbar { width: 0; height: 0; }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+
+    border: var(--border);
+    
+    min-width: 5px; min-height: 5px;
+    padding: 10px;
+  }
+  div > * { flex-grow: 1;}
+
+  .item {
+    margin: 10px;
+    min-width: 150px;
+    min-height: 50px;
+    flex-grow: 0;
+  }
+
+</style>
+
+<body>
+  <div class="vtc">
+    <div class="hzn" >
+      <div class="fixed" style="min-height: 150px; min-width: 250px; position: relative;"></div>
+      <div class=""></div>
+    </div>
+    <div class="hzn">
+      <div class="">
+      </div>
+      <div class="fixed"style="min-height: 30px; min-width: 200px;"></div>
+    </div>
+    <div class="hzn">
+      <div class="vtc fixed">
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+      <div class="vtc">
+        <div class="vtc">
+          <div class=""></div>
+          <div class=""></div>
+        </div>
+        <div class="">
+          <div class="" style="width: 0; ">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+          </div>
+        </div>
+      </div>
+      <div class="vtc fixed">
+        <div class=""></div>
+        <div class=""></div>
+        <div class=""></div>
+      </div>
+    </div>
+    <div class="hzn">
+      <div class=""></div>
+      <div class=""></div>
+    </div>
+  </div>
+</body>
